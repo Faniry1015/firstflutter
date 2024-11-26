@@ -10,8 +10,20 @@ class Mpivarotra extends StatefulWidget {
 class _MpivarotraState extends State<Mpivarotra> {
   @override
   Widget build(BuildContext context) {
-    return const Center(
-       child: Text('Mombamomba ny mpivarotra')
+    return ListView(
+      children: [
+        const Text('Mombamomba ny mpivarotra',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+        const TextField(
+          decoration: InputDecoration(
+              prefixIcon: Icon(Icons.mail),
+              hintText: 'mpivarotra',
+              labelText: 'Soraty ny anaran\'ny mpivarotra',
+              border: OutlineInputBorder()),
+              
+        ),
+        IconButton(onPressed: () {}, icon: const Icon(Icons.send))
+      ],
     );
   }
 }

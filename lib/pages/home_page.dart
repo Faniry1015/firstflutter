@@ -1,4 +1,3 @@
-
 import 'package:firstflutter/pages/fichepdip.dart';
 import 'package:firstflutter/pages/mpivarotra.dart';
 import 'package:firstflutter/pages/varotra.dart';
@@ -12,9 +11,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Widget> pages = [
-    const FichePDipp(),
+    const Mpivarotra(),
     const VarotraTsp(),
-    const Mpivarotra()
+    const FichePDipp()
   ];
 
   int pageIndex = 1;
