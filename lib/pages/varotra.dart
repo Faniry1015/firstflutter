@@ -1,3 +1,4 @@
+import 'package:firstflutter/pages/about_dev.dart';
 import 'package:flutter/material.dart';
 
 class VarotraTsp extends StatefulWidget {
@@ -29,8 +30,12 @@ class _VarotraTspState extends State<VarotraTsp> {
           child: const Text('Bouton élevé'),
         ),
         OutlinedButton(
-            onPressed: () => setColor(Colors.orange), child: const Text('Bouton avec contour')),
-        TextButton(onPressed: () => setColor(Colors.red), child: const Text('Bouton de texte')),
+            onPressed: () => {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutDev()))
+            }, child: const Text('Allez vers la route à propos du dev')),
+        TextButton(onPressed: () => {
+              Navigator.pushNamed(context, '/about_dev')
+            }, child: const Text('Allez vers la route à propos du dev')),
         IconButton(
           onPressed: () => setColor(Colors.blue),
           icon: const Icon(Icons.gamepad),
