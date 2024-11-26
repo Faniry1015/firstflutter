@@ -4,23 +4,32 @@ import 'package:firstflutter/pages/varotra.dart';
 import 'package:firstflutter/pages/mpivarotra.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: const MyApp(),
-    theme: ThemeData(
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const HomePage(),
+      debugShowCheckedModeBanner: false,
+         theme: ThemeData(
       colorSchemeSeed: const Color.fromARGB(255, 54, 146, 57),
       scaffoldBackgroundColor: Colors.white,
     ),
-    debugShowCheckedModeBanner: false,
-  ));
+    );
+  }
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _HomePageState extends State<HomePage> {
   final List<Widget> pages = [
     const FichePDipp(),
     const VarotraTsp(),
@@ -32,9 +41,36 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('P-dipping'),
-          elevation: 12,
-          centerTitle: true,
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: const Text('P-dipping App'),
+            elevation: 20,
+            actions: [
+              IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+              IconButton(icon: const Icon(Icons.more_vert), onPressed: () {})
+            ]),
+        drawer: Drawer(
+          child: ListView(children: [
+            DrawerHeader(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surfaceBright),
+                child: const Text('Menu')),
+            ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Paramètres'),
+                subtitle: const Text('Modifier les paramètres de votre apps'),
+                onTap: () {}),
+            ListTile(
+                leading: const Icon(Icons.account_box),
+                title: const Text('Profil'),
+                subtitle: const Text('Tout sur le user'),
+                onTap: () {}),
+            ListTile(
+                leading: const Icon(Icons.help),
+                title: const Text('Fanampiana'),
+                subtitle: const Text('Misy tsy mazava na fanampiana ilainao'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {}),
+          ]),
         ),
         body: Container(
             padding: const EdgeInsets.all(20), child: pages[pageIndex]),
