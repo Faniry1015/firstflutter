@@ -1,35 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:firstflutter/pages/fichepdip.dart';
+import 'package:firstflutter/pages/varotra.dart';
+import 'package:firstflutter/pages/mpivarotra.dart';
 
 void main() {
-  runApp(const MaterialApp(home: HomePage()));
+  runApp(MaterialApp(
+    home: const MyApp(),
+    theme: ThemeData(
+      colorSchemeSeed: const Color.fromARGB(255, 54, 146, 57),
+      scaffoldBackgroundColor: Colors.white,
+    ),
+    debugShowCheckedModeBanner: false,
+  ));
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  final List<Widget> pages = [
+    const FichePDipp(),
+    const VarotraTsp(),
+    const Mpivarotra()
+  ];
+
+  int pageIndex = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Home Page'),
+          title: const Text('P-dipping'),
           elevation: 12,
+          centerTitle: true,
         ),
         body: Container(
-            color: Colors.green,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    color: Colors.blue,
-                    padding: const EdgeInsets.all(10),
-                    child: const Text('Body')),
-                const Text('body 2'),
-                Image.network(
-                    'https://solguruz.com/_next/image/?url=https%3A%2F%2Fblog.solguruz.com%2Fwp-content%2Fuploads%2F2023%2F11%2FFlutter-for-Hybrid-Apps-Why-Flutter-is-the-Best-Platform-to-Make-Hybrid-Apps.png&w=1080&q=75',
-                    width: 250)
-              ],
-            )));
+            padding: const EdgeInsets.all(20), child: pages[pageIndex]),
+        bottomNavigationBar: Container(
+            decoration: const BoxDecoration(
+                border:
+                    Border(top: BorderSide(color: Colors.grey, width: 0.25))),
+            child: NavigationBar(
+                backgroundColor: Colors.white,
+                selectedIndex: pageIndex,
+                onDestinationSelected: (int index) {
+                  setState(() {
+                    pageIndex = index;
+                  });
+                },
+                destinations: const [
+                  NavigationDestination(
+                      icon: Icon(Icons.home), label: 'Mpivarotra'),
+                  NavigationDestination(
+                      icon: Icon(Icons.money), label: 'Varotra TSP'),
+                  NavigationDestination(
+                      icon: Icon(Icons.book), label: 'fiche p-dip'),
+                ])),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {}, child: const Icon(Icons.add)));
   }
 }
